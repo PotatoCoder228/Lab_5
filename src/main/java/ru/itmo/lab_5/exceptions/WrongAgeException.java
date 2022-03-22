@@ -1,0 +1,12 @@
+package ru.itmo.lab_5.exceptions;
+
+/**
+ * Исключение бросается, когда у объекта неверный возраст
+ */
+
+public class WrongAgeException extends RuntimeException {
+    public WrongAgeException(String s) {
+        super(s);
+        System.out.println(s);
+    }
+}
