@@ -31,7 +31,11 @@ public class Save extends Command {
         map.put(nameOfCommand, this);
     }
 
-
+    /**
+     * Метод, сохраняющий коллекцию в файл
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
+     */
     public void execute(Console consoleManager) {
         try {
             FileOutputStream fos = new FileOutputStream(Parser.path);

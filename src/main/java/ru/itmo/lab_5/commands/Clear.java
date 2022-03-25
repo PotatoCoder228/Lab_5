@@ -15,7 +15,7 @@ public class Clear extends Command {
     /**
      * Конструктор, задающий параметры для создания объекта
      *
-     * @param info "словарь",возвращающий описание команды по ключу
+     * @param info "словарь", возвращающий описание команды по ключу
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
@@ -28,6 +28,8 @@ public class Clear extends Command {
 
     /**
      * Метод, очищающий коллекцию
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

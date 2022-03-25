@@ -26,6 +26,12 @@ public class Help extends Command {
         map.put(nameOfCommand, this);
     }
 
+    /**
+     * Метод, выводящий справку о командах
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
+     */
+
     public void execute(Console consoleManager) {
         String string = consoleManager.info.entrySet().toString().replace(",", "\n");
         System.out.println("\nВот список команд:");

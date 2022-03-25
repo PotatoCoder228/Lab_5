@@ -26,6 +26,13 @@ public class Show extends Command {
         map.put(nameOfCommand, this);
     }
 
+    /**
+     * Метод, выводящий все элементы коллекции
+     *
+     *@param consoleManager объект, содержащий поля для работы консоли
+     */
+
+
     public void execute(Console consoleManager) {
         System.out.println("\nВот все элементы коллекции:");
         for (int i = 0; i < consoleManager.list.size(); i++) {

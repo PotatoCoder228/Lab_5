@@ -27,6 +27,12 @@ public class Info extends Command {
         map.put(nameOfCommand, this);
     }
 
+    /**
+     * Метод, выводящий информацию о коллекции
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
+     */
+
     public void execute(Console consoleManager) {
         System.out.println("\nИнформация о коллекции:");
         System.out.println("\tТип коллекции: LinkedList");

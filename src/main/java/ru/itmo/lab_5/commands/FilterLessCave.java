@@ -29,7 +29,7 @@ public class FilterLessCave extends Command {
     /**
      * Метод, выводящий все элементы коллекции, поле cave которых меньше заданного
      *
-     * @param size размер коллекции
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

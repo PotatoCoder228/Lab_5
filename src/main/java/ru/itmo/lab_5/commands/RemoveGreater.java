@@ -29,6 +29,8 @@ public class RemoveGreater extends Command {
 
     /**
      * Метод, удаляющий все элементы коллекции, больше данного
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

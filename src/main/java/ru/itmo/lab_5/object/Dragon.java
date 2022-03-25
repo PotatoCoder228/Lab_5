@@ -214,6 +214,11 @@ public class Dragon implements Comparable<Dragon> {
                 type.toString(), Float.toString(cave.getDepth())};
     }
 
+    /**
+     *
+     * @param dragon объект коллекции типа Dragon
+     * @return сравнивает объекты по возрасту
+     */
     @Override
     public int compareTo(Dragon dragon) {
         return Integer.compare(this.age, dragon.age);

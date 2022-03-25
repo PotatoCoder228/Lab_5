@@ -16,7 +16,7 @@ public class AddIfMax extends Command {
     /**
      * Конструктор, задающий параметры для создания объекта
      *
-     * @param info "словарь",возвращающий описание команды по ключу
+     * @param info "словарь", возвращающий описание команды по ключу
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
@@ -29,6 +29,8 @@ public class AddIfMax extends Command {
 
     /**
      * Метод, добавляющий объект в коллекцию, если он больше максимально имеющегося
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

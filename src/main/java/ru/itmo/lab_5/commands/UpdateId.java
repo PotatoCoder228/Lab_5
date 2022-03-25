@@ -29,6 +29,8 @@ public class UpdateId extends Command {
 
     /**
      * Метод, обновляющий объект, имеющий введенный пользователем id
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

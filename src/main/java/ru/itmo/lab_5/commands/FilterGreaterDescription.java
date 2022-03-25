@@ -29,7 +29,7 @@ public class FilterGreaterDescription extends Command {
     /**
      * Метод, выводящий все элементы коллекции, поле description которых больше заданного
      *
-     * @param size размер коллекции
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

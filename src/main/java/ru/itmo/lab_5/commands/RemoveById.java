@@ -28,6 +28,8 @@ public class RemoveById extends Command {
 
     /**
      * Метод, удаляющий объект по введенному пользователем id
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     public void execute(Console consoleManager) {

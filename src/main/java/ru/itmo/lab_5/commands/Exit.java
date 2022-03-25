@@ -28,6 +28,8 @@ public class Exit extends Command {
 
     /**
      * Метод, отвечающий за окончание работы консоли
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
     @Override
     public void execute(Console consoleManager) {

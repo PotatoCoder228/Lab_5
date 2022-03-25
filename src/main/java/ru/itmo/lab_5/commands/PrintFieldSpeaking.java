@@ -27,6 +27,11 @@ public class PrintFieldSpeaking extends Command {
         map.put(nameOfCommand, this);
     }
 
+    /**
+     * Метод, выводящий все поля speaking элементов коллекции, в порядке убывания
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
+     */
 
     public void execute(Console consoleManager) {
         System.out.println("Вот все поля speaking элементов коллекции, в порядке убывания:");

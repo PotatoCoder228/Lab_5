@@ -32,8 +32,8 @@ public class Parser {
      *
      * @param list коллекция
      * @throws ParserConfigurationException Ошибка парсинга, некорректные теги
-     * @throws SAXException                 Ошибка при анализе данных из файла
-     * @throws IOException                  Ошибка чтения
+     * @throws SAXException Ошибка при анализе данных из файла
+     * @throws IOException  Ошибка чтения
      */
 
     public static void parseFile(LinkedList<Dragon> list, Console consoleManager) throws ParserConfigurationException, SAXException, IOException {

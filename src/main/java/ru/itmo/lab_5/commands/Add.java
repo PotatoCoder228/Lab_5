@@ -27,6 +27,8 @@ public class Add extends Command {
 
     /**
      * Метод, добавляющий введенный пользователем объект в коллекцию
+     *
+     * @param consoleManager объект, содержащий поля для работы консоли
      */
 
     @Override
