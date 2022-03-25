@@ -1,16 +1,14 @@
 package ru.itmo.lab_5.commands;
 
 import ru.itmo.lab_5.console.Console;
-import ru.itmo.lab_5.object.Dragon;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда очищающая коллекцию
  */
 
-public class Clear {
+public class Clear extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -21,7 +19,7 @@ public class Clear {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public Clear(Map<String, String> info, Map<String, Object> map) {
+    public Clear(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "clear";
         description = "очистить коллекцию.";
         info.put(nameOfCommand, description);
@@ -32,8 +30,8 @@ public class Clear {
      * Метод, очищающий коллекцию
      */
 
-    public static void execute(Console consoleManager, LinkedList<Dragon> list) {
-        list.clear();
+    public void execute(Console consoleManager) {
+        consoleManager.list.clear();
         consoleManager.all_id.clear();
         System.out.println("\nВсе элементы коллекции удалены.");
     }

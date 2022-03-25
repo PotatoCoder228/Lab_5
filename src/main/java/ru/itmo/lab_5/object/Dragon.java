@@ -209,10 +209,9 @@ public class Dragon implements Comparable<Dragon> {
      */
 
     public String[] getAllFields() {
-        String[] fields = new String[]{name, id.toString(), coordinates.getX(),
+        return new String[]{name, id.toString(), coordinates.getX(),
                 coordinates.getY(), creationDate.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy")), Integer.toString(age), description, speaking.toString(),
                 type.toString(), Float.toString(cave.getDepth())};
-        return fields;
     }
 
     @Override

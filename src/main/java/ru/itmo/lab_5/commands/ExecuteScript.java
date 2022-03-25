@@ -1,11 +1,9 @@
 package ru.itmo.lab_5.commands;
 
 import ru.itmo.lab_5.console.Console;
-import ru.itmo.lab_5.object.Dragon;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ import java.util.Scanner;
  * Команда, выполняющая скрипт
  */
 
-public class ExecuteScript {
+public class ExecuteScript extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -24,7 +22,7 @@ public class ExecuteScript {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public ExecuteScript(Map<String, String> info, Map<String, Object> map) {
+    public ExecuteScript(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "execute_script";
         description = "считать и исполнить скрипт из указанного файла.";
         info.put(nameOfCommand, description);
@@ -35,7 +33,7 @@ public class ExecuteScript {
      * Метод, вызывающий и управляющий выполнением скрипта
      */
 
-    public static void execute(Console consoleManager, Map<String, Object> map, LinkedList<Dragon> list, Map<String, String> info) {
+    public void execute(Console consoleManager) {
         consoleManager.scriptIsWork = true;
         String repeatName = "";
         boolean checkRepeat = false;
@@ -58,7 +56,7 @@ public class ExecuteScript {
             try {
                 consoleManager.fileScanner = new Scanner(new File(consoleManager.strArg));
                 consoleManager.filesScanners.add(consoleManager.fileScanner);
-                Console.getMainConsole(consoleManager, map, list, info);
+                Console.getMainConsole(consoleManager);
                 if (consoleManager.scriptsNames.size() == 0) {
                     consoleManager.scriptIsWork = false;
                     consoleManager.filesScanners.removeLast();
@@ -66,7 +64,7 @@ public class ExecuteScript {
                     consoleManager.fileScanner = consoleManager.filesScanners.getLast();
                     consoleManager.filesScanners.removeLast();
                     consoleManager.scriptIsWork = true;
-                    Console.getMainConsole(consoleManager, map, list, info);
+                    Console.getMainConsole(consoleManager);
                     System.out.println("\nЧтение скрипта из " + consoleManager.scriptsNames.getLast() + " окончено.");
                     consoleManager.scriptsNames.removeLast();
                 }

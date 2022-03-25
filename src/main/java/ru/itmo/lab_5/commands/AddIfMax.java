@@ -3,14 +3,13 @@ package ru.itmo.lab_5.commands;
 import ru.itmo.lab_5.console.Console;
 import ru.itmo.lab_5.object.Dragon;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда добавляющая элемент в коллекцию, если он больше максимального
  */
 
-public class AddIfMax {
+public class AddIfMax extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -21,7 +20,7 @@ public class AddIfMax {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public AddIfMax(Map<String, String> info, Map<String, Object> map) {
+    public AddIfMax(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "add_if_max";
         description = "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции";
         info.put(nameOfCommand, description);
@@ -32,7 +31,7 @@ public class AddIfMax {
      * Метод, добавляющий объект в коллекцию, если он больше максимально имеющегося
      */
 
-    public static void execute(Console consoleManager, LinkedList<Dragon> list) {
+    public void execute(Console consoleManager) {
         try {
             System.out.println("\nДля того, чтобы  добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции,\nвам нужно ввести значения его полей.");
             String[] fields = new String[10];
@@ -47,12 +46,12 @@ public class AddIfMax {
             fields[8] = Console.inputType(consoleManager);
             fields[9] = Console.inputCave(consoleManager);
             Dragon newDragon = new Dragon(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9], consoleManager);
-            if (list.size() == 0) {
-                list.add(newDragon);
+            if (consoleManager.list.size() == 0) {
+                consoleManager.list.add(newDragon);
                 System.out.println("Элемент успешно добавлен в коллекцию.");
             } else {
-                if (list.get(list.size() - 1).getAge() < newDragon.getAge()) {
-                    list.add(newDragon);
+                if (consoleManager.list.get(consoleManager.list.size() - 1).getAge() < newDragon.getAge()) {
+                    consoleManager.list.add(newDragon);
                     System.out.println("Элемент успешно добавлен в коллекцию.");
                 } else {
                     System.out.println("Элемент меньше максимального в коллекции.");

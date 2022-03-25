@@ -3,16 +3,13 @@ package ru.itmo.lab_5.commands;
 import ru.itmo.lab_5.console.Console;
 import ru.itmo.lab_5.object.Dragon;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда добавляющая элемент в коллекцию
  */
 
-public class Add {
-    protected String nameOfCommand;
-    protected String description;
+public class Add extends Command {
 
     /**
      * Конструктор, задающий параметры для создания объекта
@@ -21,7 +18,7 @@ public class Add {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public Add(Map<String, String> info, Map<String, Object> map) {
+    public Add(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "add";
         description = "добавление нового элемента в коллекцию.";
         info.put(nameOfCommand, description);
@@ -32,7 +29,8 @@ public class Add {
      * Метод, добавляющий введенный пользователем объект в коллекцию
      */
 
-    public static void execute(Console consoleManager, LinkedList<Dragon> list) {
+    @Override
+    public void execute(Console consoleManager) {
         try {
             System.out.println("Для добавления элемента в коллекцию вам нужно ввести поля элемента.");
             String[] arg = new String[10];
@@ -47,7 +45,7 @@ public class Add {
             arg[8] = Console.inputType(consoleManager);
             arg[9] = Console.inputCave(consoleManager);
             Dragon newDragon = new Dragon(arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], consoleManager);
-            list.add(newDragon);
+            consoleManager.list.add(newDragon);
             System.out.println("Объект успешно добавлен в коллекцию.");
         } catch (Exception e) {
             System.out.println("\nПереход обратно к основной консоли.");

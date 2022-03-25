@@ -3,14 +3,13 @@ package ru.itmo.lab_5.commands;
 import ru.itmo.lab_5.console.Console;
 import ru.itmo.lab_5.object.Dragon;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда, обновляющая элемент коллекции с заданным id
  */
 
-public class UpdateId {
+public class UpdateId extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -21,7 +20,7 @@ public class UpdateId {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public UpdateId(Map<String, String> info, Map<String, Object> map) {
+    public UpdateId(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "update";
         description = "обновить значение элемента коллекции, id которого равен заданному.";
         info.put(nameOfCommand, description);
@@ -32,7 +31,7 @@ public class UpdateId {
      * Метод, обновляющий объект, имеющий введенный пользователем id
      */
 
-    public static void execute(Console consoleManager, LinkedList<Dragon> list) {
+    public void execute(Console consoleManager) {
         boolean idChecker = false;
         for (int i = 0; i < consoleManager.all_id.size(); i++) {
             if (consoleManager.digitArg == consoleManager.all_id.get(i)) {
@@ -61,7 +60,7 @@ public class UpdateId {
                     }
                 }
                 Dragon newDragon = new Dragon(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9], consoleManager);
-                list.add(newDragon);
+                consoleManager.list.add(newDragon);
                 System.out.println("\nОбъект успешно обновлён.");
             } catch (Exception e) {
                 System.out.println("\nПереход обратно к чтению команд.");

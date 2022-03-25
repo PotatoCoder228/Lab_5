@@ -1,12 +1,14 @@
 package ru.itmo.lab_5.commands;
 
+import ru.itmo.lab_5.console.Console;
+
 import java.util.Map;
 
 /**
  * Команда, выводящая информацию о командах
  */
 
-public class Help {
+public class Help extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -17,21 +19,15 @@ public class Help {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public Help(Map<String, String> info, Map<String, Object> map) {
+    public Help(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "help";
         description = "вывод справки по доступным командам.";
         info.put(nameOfCommand, description);//кладём описание
         map.put(nameOfCommand, this);
     }
 
-    /**
-     * Метод, выводящий информацию о командах
-     *
-     * @param info "словарь" с описанием команд
-     */
-
-    public static void execute(Map<String, String> info) {
-        String string = info.entrySet().toString().replace(",", "\n");
+    public void execute(Console consoleManager) {
+        String string = consoleManager.info.entrySet().toString().replace(",", "\n");
         System.out.println("\nВот список команд:");
         System.out.println(" " + string.replace("=", ":").substring(1, string.length() - 1));
     }

@@ -1,19 +1,19 @@
 package ru.itmo.lab_5.commands;
 
+import ru.itmo.lab_5.console.Console;
 import ru.itmo.lab_5.console.Parser;
 import ru.itmo.lab_5.object.Dragon;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда, сохраняющая коллекцию в файл
  */
 
-public class Save {
+public class Save extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -24,25 +24,20 @@ public class Save {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public Save(Map<String, String> info, Map<String, Object> map) {
+    public Save(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "save";
         description = "сохранить коллекцию в файл.";
         info.put(nameOfCommand, description);
         map.put(nameOfCommand, this);
     }
 
-    /**
-     * Метод, сохраняющий коллекцию в файл
-     *
-     * @param object коллекция
-     */
 
-    public static void execute(LinkedList<Dragon> object) {
+    public void execute(Console consoleManager) {
         try {
             FileOutputStream fos = new FileOutputStream(Parser.path);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
             String text = "<Dragons>";
-            for (Dragon dragon : object) {
+            for (Dragon dragon : consoleManager.list) {
                 String[] fields = dragon.getAllFields();
                 String begin = "\n\t<Dragon>";
                 String name = "\n\t\t<name>" + fields[0] + "</name>";

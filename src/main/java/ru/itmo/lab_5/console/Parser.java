@@ -132,7 +132,7 @@ public class Parser {
         } catch (SAXException e) {
             System.out.println("Ошибка при анализе данных в файле. Проверьте файл на корректность и попробуйте ввести переменную окружения снова.");
             Parser.parseFile(list, consoleManager);
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("Некорректное имя переменной окружения. Попробуйте ввести переменную снова.");
             Parser.parseFile(list, consoleManager);
         }

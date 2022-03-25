@@ -1,16 +1,14 @@
 package ru.itmo.lab_5.commands;
 
 import ru.itmo.lab_5.console.Console;
-import ru.itmo.lab_5.object.Dragon;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда, удаляющая первый элемент в коллекции
  */
 
-public class RemoveFirst {
+public class RemoveFirst extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -21,7 +19,7 @@ public class RemoveFirst {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public RemoveFirst(Map<String, String> info, Map<String, Object> map) {
+    public RemoveFirst(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "remove_first";
         description = "удалить первый элемент из коллекции.";
         info.put(nameOfCommand, description);
@@ -34,9 +32,9 @@ public class RemoveFirst {
      * @param size размер коллекции
      */
 
-    public static void execute(Console consoleManager, LinkedList<Dragon> list, int size) {
-        if (size != 0) {
-            list.remove(0);
+    public void execute(Console consoleManager) {
+        if (consoleManager.list.size() != 0) {
+            consoleManager.list.remove(0);
             consoleManager.all_id.removeFirst();
             System.out.println("\nПервый элемент коллекции удалён");
         } else {

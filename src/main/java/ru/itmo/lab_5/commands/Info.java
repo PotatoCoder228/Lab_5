@@ -1,17 +1,15 @@
 package ru.itmo.lab_5.commands;
 
 import ru.itmo.lab_5.console.Console;
-import ru.itmo.lab_5.object.Dragon;
 
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Команда, выводящая информацию о коллекции
  */
 
-public class Info {
+public class Info extends Command {
     protected String nameOfCommand;
     protected String description;
 
@@ -22,23 +20,17 @@ public class Info {
      * @param map  "словарь", возвращающий объекты классов, наследующихся от Command
      */
 
-    public Info(Map<String, String> info, Map<String, Object> map) {
+    public Info(Map<String, String> info, Map<String, Command> map) {
         nameOfCommand = "info";
         description = "выводит информацию о коллекции.";
         info.put(nameOfCommand, description);
         map.put(nameOfCommand, this);
     }
 
-    /**
-     * Метод, выводящий информацию о коллекции
-     *
-     * @param list коллекция
-     */
-
-    public static void execute(Console consoleManager, LinkedList<Dragon> list) {
+    public void execute(Console consoleManager) {
         System.out.println("\nИнформация о коллекции:");
         System.out.println("\tТип коллекции: LinkedList");
         System.out.println("\tВремя создания коллекции: " + consoleManager.timeNow.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy")));
-        System.out.println("\tКоличество элементов в коллекции: " + list.size());
+        System.out.println("\tКоличество элементов в коллекции: " + consoleManager.list.size());
     }
 }

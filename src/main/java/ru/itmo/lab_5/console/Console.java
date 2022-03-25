@@ -1,14 +1,12 @@
 package ru.itmo.lab_5.console;
 
+import ru.itmo.lab_5.commands.Command;
 import ru.itmo.lab_5.exceptions.*;
 import ru.itmo.lab_5.object.Dragon;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Класс для работы с вводимыми в консоль или записанными в скрипт командами и полями
@@ -26,6 +24,8 @@ public class Console {
     public Scanner fileScanner;
     public LinkedList<String> scriptsNames = new LinkedList<>();
     public LinkedList<Scanner> filesScanners = new LinkedList<>();
+    public Map<String, Command> map = new HashMap<>();
+    public Map<String, String> info = new HashMap<>();
     /**
      * LinkedList, хранит все id объектов из текущей коллекции
      */
@@ -37,7 +37,7 @@ public class Console {
      * @param map Map c команда:соответствующий объект класса
      */
 
-    public static void getMainConsole(Console consoleManager, Map<String, Object> map, LinkedList<Dragon> list, Map<String, String> info) {
+    public static void getMainConsole(Console consoleManager) {
         try {
             if (consoleManager.scriptIsWork) {
                 consoleManager.ReaderNotWork = false;
@@ -52,13 +52,13 @@ public class Console {
                             } else {
                                 consoleManager.strArg = command[1];
                             }
-                            consoleManager.newCom.activate(consoleManager, map, map.get(command[0]), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(command[0]));
                         } else if (command[0].equals("filter_greater_than_description") || command[0].equals("execute_script")) {
                             command = full_com.split("\\s+", 2);
                             consoleManager.strArg = command[1];
-                            consoleManager.newCom.activate(consoleManager, map, map.get(command[0]), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(command[0]));
                         } else {
-                            consoleManager.newCom.activate(consoleManager, map, map.get(full_com), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(full_com));
                         }
                     } catch (NullPointerException e) {
                         System.out.println("\nНекорректная команда. Вот она:" + full_com);
@@ -84,22 +84,25 @@ public class Console {
                             } else {
                                 consoleManager.strArg = command[1];
                             }
-                            consoleManager.newCom.activate(consoleManager, map, map.get(command[0]), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(command[0]));
                         } else if (command[0].equals("filter_greater_than_description") || command[0].equals("execute_script")) {
                             command = full_com.split("\\s+", 2);
                             consoleManager.strArg = command[1];
-                            consoleManager.newCom.activate(consoleManager, map, map.get(command[0]), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(command[0]));
                         } else {
-                            consoleManager.newCom.activate(consoleManager, map, map.get(full_com), list, info);
+                            consoleManager.newCom.activate(consoleManager, consoleManager.map.get(command[0]));
+                        }
+                        if (consoleManager.consNotWork) {
+                            scanner.close();
                         }
                     } catch (NullPointerException e) {
                         System.out.println("\nОшибочный ввод. Введите команду из списка, пожалуйста.");
                     }
                 }
             }
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("\nНекорректный ввод. Попробуйте ввести команду снова.");
-            Console.getMainConsole(consoleManager, map, list, info);
+            Console.getMainConsole(consoleManager);
         }
     }
 
