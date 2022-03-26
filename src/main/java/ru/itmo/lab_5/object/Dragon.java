@@ -45,17 +45,17 @@ public class Dragon implements Comparable<Dragon> {
         }
         try {
             if (!(id.equals("null"))) {
-                if (consoleManager.all_id.size() > 0) {
+                if (consoleManager.idList.size() > 0) {
                     this.id = Integer.parseInt(id);
-                    for (int i = 0; i < consoleManager.all_id.size(); i++) {
-                        if (this.id == (int) consoleManager.all_id.get(i)) {
+                    for (int i = 0; i < consoleManager.idList.size(); i++) {
+                        if (this.id == (int) consoleManager.idList.get(i)) {
                             throw new WrongIdException("Объект с таким id уже есть в коллекции.");
                         }
                     }
-                    consoleManager.all_id.add(this.id);
+                    consoleManager.idList.add(this.id);
                 } else {
                     this.id = Integer.parseInt(id);
-                    consoleManager.all_id.add(this.id);
+                    consoleManager.idList.add(this.id);
                 }
             } else {
                 throw new WrongIdException("У объекта отсутствует id.");
@@ -66,14 +66,14 @@ public class Dragon implements Comparable<Dragon> {
         {
             if (!(y_1.equals("null"))) {
                 if (x_1.equals("null")) {
-                    consoleManager.all_id.removeLast();
+                    consoleManager.idList.removeLast();
                     throw new WrongCoordinatesException("У объекта отсутствует координата по оси Ox.");
                 }
                 long x = Integer.parseInt(x_1);
                 Double y = Double.parseDouble(y_1);
                 this.coordinates = new Coordinates(x, y, consoleManager);
             } else {
-                consoleManager.all_id.removeLast();
+                consoleManager.idList.removeLast();
                 throw new WrongCoordinatesException("У объекта отсутствует координата по оси Oy.");
             }
         }
@@ -90,7 +90,7 @@ public class Dragon implements Comparable<Dragon> {
                     int minute = Integer.parseInt(time[1]);
                     this.creationDate = LocalDateTime.of(year, month, day, hour, minute);
                 } else {
-                    consoleManager.all_id.removeLast();
+                    consoleManager.idList.removeLast();
                     throw new WrongDateException("У объекта отсутствует дата создания.");
                 }
             } catch (NumberFormatException e) {
@@ -101,11 +101,11 @@ public class Dragon implements Comparable<Dragon> {
             if (Integer.parseInt(age) > 0) {
                 this.age = Integer.parseInt(age);
             } else {
-                consoleManager.all_id.removeLast();
+                consoleManager.idList.removeLast();
                 throw new WrongAgeException("У объекта возраст меньше 0 или отсутствует.");
             }
         } else {
-            consoleManager.all_id.removeLast();
+            consoleManager.idList.removeLast();
             throw new WrongAgeException("В поле age не числовое значение.");
         }
         this.description = description;
@@ -113,21 +113,21 @@ public class Dragon implements Comparable<Dragon> {
             if (speaking.equals("true") || speaking.equals("false")) {
                 this.speaking = speaking.equals("true");
             } else {
-                consoleManager.all_id.removeLast();
+                consoleManager.idList.removeLast();
                 throw new WrongSpeakingException("У объекта некорректное поле speaking.");
             }
         }
         try {
             this.type = DragonType.valueOf(type);
         } catch (IllegalArgumentException e) {
-            consoleManager.all_id.removeLast();
+            consoleManager.idList.removeLast();
             throw new WrongTypeException("У объекта некорректный тип.");
         }
         try {
             if (!(cave.equals("null"))) {
                 this.cave = new DragonCave(cave, consoleManager);
             } else {
-                consoleManager.all_id.removeLast();
+                consoleManager.idList.removeLast();
                 throw new WrongCaveException("Поле cave у объекта отсутствует.");
             }
         } catch (NumberFormatException e) {

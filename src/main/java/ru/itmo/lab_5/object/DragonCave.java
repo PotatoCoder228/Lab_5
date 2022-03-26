@@ -21,7 +21,7 @@ public class DragonCave {
             this.depth = Float.parseFloat(depth);
 
         } catch (NumberFormatException e) {
-            consoleManager.all_id.removeLast();
+            consoleManager.idList.removeLast();
             throw new WrongCaveException("На месте числа в поле cave стоит некорректное значение.");
         }
     }

@@ -36,11 +36,11 @@ public class RemoveById extends Command {
         if (consoleManager.list.size() == 0) {
             System.out.println("Коллекция пуста.");
         }
-        for (int i = 0; i < consoleManager.all_id.size(); i++) {
-            if (consoleManager.all_id.get(i) == consoleManager.digitArg) {
-                consoleManager.all_id.remove(i);
+        for (int i = 0; i < consoleManager.idList.size(); i++) {
+            if (consoleManager.idList.get(i) == consoleManager.digitArg) {
+                consoleManager.idList.remove(i);
                 break;
-            } else if ((i == consoleManager.all_id.size() - 1) && consoleManager.all_id.get(i) != consoleManager.digitArg) {
+            } else if ((i == consoleManager.idList.size() - 1) && consoleManager.idList.get(i) != consoleManager.digitArg) {
                 System.out.println("\nОбъект с таким id отсутствует.");
             }
         }

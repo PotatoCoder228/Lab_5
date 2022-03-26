@@ -7,6 +7,8 @@ import ru.itmo.lab_5.console.Parser;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Collections;
 
 /**
@@ -15,6 +17,7 @@ import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+        System.err.close();
         System.out.println("Добро пожаловать в моё консольное приложение.");
         System.out.println("help - справка по всем командам.");
         Console consoleManager = new Console();

@@ -29,7 +29,7 @@ public class Console {
     /**
      * LinkedList, хранит все id объектов из текущей коллекции
      */
-    public LinkedList<Integer> all_id = new LinkedList<>();
+    public LinkedList<Integer> idList = new LinkedList<>();
 
     /**
      * Метод, обрабатывающий и вызывающий команды из консоли, либо из скрипта
@@ -338,9 +338,9 @@ public class Console {
 
     public static String genId(Console consoleManager) {
         int maxId = 0;
-        for (int i = 0; i < consoleManager.all_id.size(); i++) {
-            if (consoleManager.all_id.get(i) > maxId) {
-                maxId = consoleManager.all_id.get(i);
+        for (int i = 0; i < consoleManager.idList.size(); i++) {
+            if (consoleManager.idList.get(i) > maxId) {
+                maxId = consoleManager.idList.get(i);
             }
         }
         maxId += 1;

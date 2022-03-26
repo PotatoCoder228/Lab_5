@@ -34,7 +34,7 @@ public class Clear extends Command {
 
     public void execute(Console consoleManager) {
         consoleManager.list.clear();
-        consoleManager.all_id.clear();
+        consoleManager.idList.clear();
         System.out.println("\nВсе элементы коллекции удалены.");
     }
 }

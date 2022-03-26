@@ -35,8 +35,8 @@ public class UpdateId extends Command {
 
     public void execute(Console consoleManager) {
         boolean idChecker = false;
-        for (int i = 0; i < consoleManager.all_id.size(); i++) {
-            if (consoleManager.digitArg == consoleManager.all_id.get(i)) {
+        for (int i = 0; i < consoleManager.idList.size(); i++) {
+            if (consoleManager.digitArg == consoleManager.idList.get(i)) {
                 idChecker = true;
                 break;
             }
@@ -55,9 +55,9 @@ public class UpdateId extends Command {
                 fields[7] = Console.inputSpeaking(consoleManager);
                 fields[8] = Console.inputType(consoleManager);
                 fields[9] = Console.inputCave(consoleManager);
-                for (int i = 0; i < consoleManager.all_id.size(); i++) {
-                    if (consoleManager.all_id.get(i) == consoleManager.digitArg) {
-                        consoleManager.all_id.remove(i);
+                for (int i = 0; i < consoleManager.idList.size(); i++) {
+                    if (consoleManager.idList.get(i) == consoleManager.digitArg) {
+                        consoleManager.idList.remove(i);
                         break;
                     }
                 }

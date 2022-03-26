@@ -25,11 +25,11 @@ public class Coordinates {
                 this.x = i;
                 this.y = k;
             } else {
-                consoleManager.all_id.removeLast();
+                consoleManager.idList.removeLast();
                 throw new WrongCoordinatesException("Координата объекта по оси Oy больше 101.");
             }
         } else {
-            consoleManager.all_id.removeLast();
+            consoleManager.idList.removeLast();
             throw new WrongCoordinatesException("Координата объекта по оси Ox больше 436.");
         }
     }

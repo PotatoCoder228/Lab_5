@@ -35,7 +35,7 @@ public class RemoveFirst extends Command {
     public void execute(Console consoleManager) {
         if (consoleManager.list.size() != 0) {
             consoleManager.list.remove(0);
-            consoleManager.all_id.removeFirst();
+            consoleManager.idList.removeFirst();
             System.out.println("\nПервый элемент коллекции удалён");
         } else {
             System.out.println("\nПервый элемент не может быть удалён - коллекция пуста.");

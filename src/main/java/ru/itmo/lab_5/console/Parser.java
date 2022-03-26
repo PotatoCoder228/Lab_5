@@ -4,6 +4,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import ru.itmo.lab_5.exceptions.FileNotExistsException;
+import ru.itmo.lab_5.exceptions.FileWrongPermissionsException;
 import ru.itmo.lab_5.object.Dragon;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -43,17 +45,14 @@ public class Parser {
             System.out.print("\nВведите переменную окружения, откуда читать и куда сохранять коллекцию(exit - выход из ввода):");
             Scanner scanPath = new Scanner(System.in);
             String exit = scanPath.nextLine();
+            File file;
             cycle:
             if (!exit.equals("exit")) {
                 Parser.path = System.getenv(exit);
                 String[] checkPaths = path.split(";");
                 path = path.replace(";", "");
-                while ((checkPaths.length > 1) || !(path.startsWith(".xml", path.length() - 4))) {
-                    if (checkPaths.length > 1) {
-                        System.out.print("\nВ этой переменной содержится более 1 пути к файлам, укажите другую:");
-                    } else {
-                        System.out.print("\nВы указали путь не на XML-файл. Введите другую переменную окружения:");
-                    }
+                while ((checkPaths.length > 1)) {
+                    System.out.print("\nВ этой переменной содержится более 1 пути к файлам, укажите другую:");
                     path = scanPath.nextLine();
                     if (!(path.equals("exit"))) {
                         checkPaths = System.getenv(path).split(";");
@@ -66,7 +65,8 @@ public class Parser {
                     }
                 }
                 path = path.replace(";", "");
-                Document document = builder.parse(new File(path));
+                file = new File(path);
+                Document document = builder.parse(file);
                 String[] tags = new String[]{"name", "id", "coordinate_x", "coordinate_y", "creationDate", "age", "description", "speaking", "type", "cave"};
                 String[] values = new String[10];
                 int counter = document.getDocumentElement().getElementsByTagName("Dragon").getLength();
@@ -109,13 +109,12 @@ public class Parser {
                 System.out.println("Чтобы выйти из программы, введите команду exit.");
             }
         } catch (SAXParseException e) {
-            FileOutputStream fos = new FileOutputStream(path);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            String text = "<Dragons>\n</Dragons>";
-            byte[] buffer = text.getBytes();
-            bos.write(buffer, 0, buffer.length);
-            bos.flush();
-            System.out.println("\nФайл был некорректен. Все нужные поправки внесены, файл полностью очищен. 0 объектов будет добавлено в коллекцию.");
+            File file = new File(path);
+            if(file.isFile()) {
+                System.out.println("\n0 объектов будет добавлено в коллекцию.");
+            }else{
+                System.out.println("В переменной окружения содержится путь на директорию. Сохранение будет невозможно.");
+            }
         } catch (UnsupportedEncodingException e) {
             System.out.println("\nУ файла неподдерживаемая кодировка. Пожалуйста, измените её и попробуйте ввести переменную окружения снова.");
             Parser.parseFile(list, consoleManager);
